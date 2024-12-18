@@ -85,7 +85,7 @@ class OrderProcessor implements ProcessorInterface
         $this->messageBus->dispatch(new OrderMessage($data->getProductId(), $totalIncome));
 
         // Transform the output using OrderResponse DTO
-        $orderResponse = OrderResponse::fromEntity($data, [
+        $orderResponse = OrderResponse::fromEntityWithProduct($data, [
             'id' => $product['id'],
             'name' => $product['name'],
             'qty' => $product['qty'] - $data->getQty(),
